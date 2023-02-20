@@ -1,28 +1,46 @@
-class Employee
-{
+class Employee {
     #id: number;
 
-    name: string;
+    protected name: string;
 
     address: string;
 
-    constructor(id: number, name: string, address: string)
-     {
-        this.address = address;
-        this.#id= id;
-        this.name = name;
+    get empId():number {
+        return this.#id;
     }
 
-    getNameWithAddress(): string {
-        return `${this.name} stays at ${this.address}`;
+    set empId(id:number) {
+        this.#id = id; 
     }
+
+
+    static getEmployeeCount(): number{
+    return 50;
+}
+
+constructor(id: number, name: string, address: string)
+{
+    this.address = address;
+    this.#id = id;
+    this.name = name;
+}
+
+getNameWithAddress(): string {
+    return `${this.name} stays at ${this.address}`;
+}
 }
 
 
 let john = new Employee(1, "John", "Highway 71");
 
 
-class Manager extends Employee{
+john.empId = 100;
+console.log(john.empId);
+
+//Employee.getEmployeeCount();
+
+
+class Manager extends Employee {
 
     constructor(id: number, name: string, address: string) {
         super(id, name, address);
@@ -34,7 +52,7 @@ class Manager extends Employee{
 
 }
 
-let address=john.getNameWithAddress();
+let address = john.getNameWithAddress();
 
 //john.id = 1;
 //john.name= "John";
