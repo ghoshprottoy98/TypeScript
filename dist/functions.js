@@ -20,3 +20,4 @@ function getItems(items) {
 }
 let concatResult = getItems([1, 2, 3, 4, 5]);
 let concatString = getItems(["a", "b", "c", "d", "e"]);
+//# sourceMappingURL=functions.js.map

@@ -58,3 +58,4 @@ let address = john.getNameWithAddress();
 //john.name= "John";
 //john.address= "Highway 71";
 console.log(address);
+//# sourceMappingURL=class.js.map
