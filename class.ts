@@ -1,37 +1,56 @@
-class Employee {
+import { Login, User } from './interface';
+
+//import * as UserLogin from './interface';
+interface Address {
+
+    street: string;
+    city: string;
+    state: string;
+    pin: string;
+
+}
+
+class Employee implements Login{
     #id: number;
 
     protected name: string;
 
-    address: string;
+    address: Address;
 
-    get empId():number {
-        return this.#id;
+    get empId(): number {
+            return this.#id;
+        }
+
+    set empId(id: number) {
+        this.#id = id;
     }
 
-    set empId(id:number) {
-        this.#id = id; 
+
+    static getEmployeeCount(): number {
+        return 50;
     }
 
+    constructor(id: number, name: string, address: Address) {
+        this.address = address;
+        this.#id = id;
+        this.name = name;
+    }
+    Login(): User {
+        return {name: "John", id: 1, email: ""};
+    }
 
-    static getEmployeeCount(): number{
-    return 50;
-}
-
-constructor(id: number, name: string, address: string)
-{
-    this.address = address;
-    this.#id = id;
-    this.name = name;
-}
-
-getNameWithAddress(): string {
-    return `${this.name} stays at ${this.address}`;
-}
+    getNameWithAddress(): string {
+        return `${this.name} stays at ${this.address}`;
+    }
 }
 
 
-let john = new Employee(1, "John", "Highway 71");
+let john = new Employee(1, "John", { 
+    street: "ABC", 
+    city: "Washington", 
+    state: "Seatle", 
+    pin: "3405" 
+});
 
 
 john.empId = 100;
@@ -42,7 +61,7 @@ console.log(john.empId);
 
 class Manager extends Employee {
 
-    constructor(id: number, name: string, address: string) {
+    constructor(id: number, name: string, address: Address) {
         super(id, name, address);
     }
 
@@ -60,8 +79,4 @@ let address = john.getNameWithAddress();
 
 
 console.log(address);
-
-let mike = new Employee(2, "Mike", "Cherise Drive");
-
-console.log(mike.getNameWithAddress());
 
